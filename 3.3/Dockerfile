@@ -43,6 +43,12 @@ RUN curl http://www.nominatim.org/data/country_grid.sql.gz > /app/src/data/count
 RUN sed -i -e 's|bin/python|bin/python3|' /app/src/utils/*.py
 RUN chmod o=rwx /app/src/build
 
+RUN apt-get -y update && \
+    apt-get -y  install vim mc && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* && \
+    rm -rf /tmp/* /var/tmp/*
+
 EXPOSE 5432
 EXPOSE 8080
 
